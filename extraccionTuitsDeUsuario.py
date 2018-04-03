@@ -24,16 +24,17 @@ def get_all_tweets(screen_name):
 
     oldest = alltweets[-1].id - 1
 
-     while len(new_tweets) > 0:
-        print "getting tweets before %s" % (oldest)
+    while len(new_tweets)>0:
+       
+        print "Extrayendo tweets %s" % (oldest)
 
-          new_tweets = api.user_timeline(screen_name = screen_name,count=200,max_id=oldest)
+        new_tweets = api.user_timeline(screen_name = screen_name,count=200,max_id=oldest)
 
-          alltweets.extend(new_tweets)
+        alltweets.extend(new_tweets)
 
-          oldest = alltweets[-1].id - 1
+        oldest = alltweets[-1].id - 1
 
-        print "...%s tweets downloaded so far" % (len(alltweets))
+        print "...%s descargando tweets" % (len(alltweets))
 
     outtweets = [[tweet.id_str, tweet.created_at, tweet.text.encode("utf-8")] for tweet in alltweets]
 
@@ -48,4 +49,3 @@ def get_all_tweets(screen_name):
 if __name__ == '__main__':
     #Usuario de Twitter
     get_all_tweets("nicolasmaduro")
-
